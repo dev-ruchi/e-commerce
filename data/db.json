@@ -1,0 +1,25 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "title": "IPhone 13",
+            "slug": "iphone-13",
+            "description": "Ea adipisicing cillum reprehenderit velit magna irure tempor commodo elit aliquip cillum fugiat sint. Fugiat mollit culpa consectetur qui reprehenderit commodo laborum.",
+            "price": 1200
+        },
+        {
+            "id": 2,
+            "title": "Samsung S22 Ultra",
+            "slug": "samsung-s22-ultra",
+            "description": "Aliquip consectetur excepteur qui aliquip excepteur exercitation deserunt pariatur dolore fugiat ullamco sunt esse. Qui ad dolor sunt minim laboris consectetur aliquip ad do irure excepteur exercitation.",
+            "price": 1500
+        },
+        {
+            "id": 3,
+            "title": "Speaker",
+            "slug": "speaker",
+            "description": "Occaecat dolor reprehenderit sunt tempor amet proident adipisicing quis nisi eu sunt proident. Officia aliqua minim fugiat est ad ut qui aute. Veniam consectetur dolor cupidatat minim elit aute aliquip quis laborum duis labore.",
+            "price": 1000
+        }
+    ]
+}
