@@ -20,7 +20,7 @@ const ProductList = () => {
             {products.map(product => (
                 <div className="product-preview" key={product.id} >
                     <Link to={`/products/${product.id}`}>
-                        <h2>{product.title}</h2>
+                        <h2 className="text-2xl font-bold">{product.title}</h2>
                         <p>{product.slug}</p>
                         <p>{product.price}</p>
                         <p>{product.description}</p>
