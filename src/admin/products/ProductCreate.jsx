@@ -16,7 +16,6 @@ const ProductCreate = () => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    console.log(process.env);
                     axios({
                         method: "post",
                         url: `${process.env.REACT_APP_BACKEND}/products`,
