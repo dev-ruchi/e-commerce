@@ -1,24 +1,29 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import axios from 'axios';
 
 const ProductCreate = () => {
     return (
         <div>
-            <h1 className='lock text-gray-700 text-4xl mt-8 mb-8'>ProductCreate</h1>
+            <h1 className='lock text-gray-700 text-4xl mt-8 mb-8'>Add new product</h1>
             <Formik
-                initialValues={{ title: '', descrption: '' }}
+                initialValues={{ title: '', description: '', price: '' }}
                 validate={values => {
                     const errors = {};
                     if (!values.title) {
-                        errors.title = 'Required';
+                        errors.title = 'Product title is required';
                     }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
+                    console.log(process.env);
+                    axios({
+                        method: "post",
+                        url: `${process.env.REACT_APP_BACKEND}/products`,
+                        data: values,
+                    }).finally(() => {
                         setSubmitting(false);
-                    }, 400);
+                    })
                 }}
             >
                 {({ isSubmitting }) => (
@@ -41,9 +46,9 @@ const ProductCreate = () => {
 
                         <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="description" />
                         <ErrorMessage name="description" component="div" />
-                        <div class="flex justify-center">
+                        <div className="flex justify-center">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" type="submit" disabled={isSubmitting}>
-                                ProductCreate
+                                Add
                             </button>
                         </div>
                     </Form>
