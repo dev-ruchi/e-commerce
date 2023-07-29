@@ -7,8 +7,9 @@ import {
 import "./index.css";
 import ProductList from "./products/ProductList";
 import ProductView from "./products/ProductView";
-import Signup from "./products/Signup";
-import Login from "./products/Login";
+import Signup from "./auth/Signup";
+import Login from "./auth/Login";
+import ProductCreate from "./admin/products/ProductCreate";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,12 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/admin/products/create",
+    element: <ProductCreate />
   }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
