@@ -4,42 +4,48 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 import "./index.css";
-import ProductList from "./products/ProductList";
-import ProductView from "./products/ProductView";
-import Signup from "./auth/Signup";
+
+import Layout from "./ui/Layout";
 import Login from "./auth/Login";
+import Signup from "./auth/Signup";
+import ProductView from "./products/ProductView";
+import ProductList from "./products/ProductList";
 import ProductCreate from "./admin/products/ProductCreate";
-import Navbar from "./ui/Navbar";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProductList />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <ProductList />,
+      },
+      {
+        path: "/products/:slug",
+        element: <ProductView />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/admin/products/create",
+        element: <ProductCreate />
+      }
+    ]
   },
-  {
-    path: "/products/:slug",
-    element: <ProductView />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/admin/products/create",
-    element: <ProductCreate />
-  }
-
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <div className="container px-4 mx-auto">
     <React.StrictMode>
-      <Navbar />
       <RouterProvider router={router} />
     </React.StrictMode>
   </div>
