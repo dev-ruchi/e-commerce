@@ -10,6 +10,7 @@ import ProductView from "./products/ProductView";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import ProductCreate from "./admin/products/ProductCreate";
+import Navbar from "./ui/Navbar";
 
 const router = createBrowserRouter([
   {
@@ -36,8 +37,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <div className="container mx-auto">
+  <div className="container px-4 mx-auto">
     <React.StrictMode>
+      <Navbar />
       <RouterProvider router={router} />
     </React.StrictMode>
   </div>
