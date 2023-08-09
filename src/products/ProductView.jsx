@@ -20,8 +20,8 @@ const ProductView = () => {
 
 
     return (
-        <div className="mt-20 grid grid-cols-10 gap-8">
-            <div className="col-span-4">
+        <div className="mt-8 md:mt-20 md:grid md:grid-cols-10 md:gap-8">
+            <div className="col-span-4 mb-8 md:mb-0">
                 <img className="w-full" src="https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s22-ultra-5g.jpg" />
             </div>
             <div className="col-span-6">
