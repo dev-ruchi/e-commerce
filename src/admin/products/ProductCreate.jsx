@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 
+// Import React FilePond
+import { FilePond, registerPlugin } from 'react-filepond'
+
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css'
+
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
+
+
 const ProductCreate = () => {
+    
+    const [files, setFiles] = useState([])
+
     return (
         <div>
             <h1 className='lock text-gray-700 text-4xl mt-8 mb-8'>Add new product</h1>
@@ -20,7 +39,7 @@ const ProductCreate = () => {
                         method: "post",
                         url: `${process.env.REACT_APP_BACKEND}/products`,
                         data: values,
-                                                }).finally(() => {
+                    }).finally(() => {
                         setSubmitting(false);
                     })
                 }}
@@ -50,7 +69,20 @@ const ProductCreate = () => {
                             <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="description" />
                             <ErrorMessage name="description" component="div" />
                         </div>
-                        
+
+                        <div className="App">
+                            <FilePond
+                                files={files}
+                                onupdatefiles={setFiles}
+                                allowMultiple={true}
+                                maxFiles={3}
+                                server="/api"
+                                name="files" /* sets the file input name, it's filepond by default */
+                                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+                                credits={{label: "", url: ""}}
+                            />
+                        </div>
+
                         <div className="flex justify-center">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" type="submit" disabled={isSubmitting}>
                                 Add
