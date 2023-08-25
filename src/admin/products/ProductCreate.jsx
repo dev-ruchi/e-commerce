@@ -20,31 +20,37 @@ const ProductCreate = () => {
                         method: "post",
                         url: `${process.env.REACT_APP_BACKEND}/products`,
                         data: values,
-                    }).finally(() => {
+                                                }).finally(() => {
                         setSubmitting(false);
                     })
                 }}
             >
                 {({ isSubmitting }) => (
                     <Form>
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                            Title
-                        </label>
-                        <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="title" />
-                        <ErrorMessage name="title" component="div" />
+                        <div className='mb-4'>
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
+                                Title
+                            </label>
+                            <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="title" />
+                            <ErrorMessage name="title" component="div" />
+                        </div>
 
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
-                            Price
-                        </label>
-                        <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="price" />
-                        <ErrorMessage name="price" component="div" />
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+                                Price
+                            </label>
+                            <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="price" />
+                            <ErrorMessage name="price" component="div" />
+                        </div>
 
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
-                            Description
-                        </label>
-
-                        <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="description" />
-                        <ErrorMessage name="description" component="div" />
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+                                Description
+                            </label>
+                            <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="description" />
+                            <ErrorMessage name="description" component="div" />
+                        </div>
+                        
                         <div className="flex justify-center">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" type="submit" disabled={isSubmitting}>
                                 Add
