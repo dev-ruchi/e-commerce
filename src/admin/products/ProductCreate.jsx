@@ -79,7 +79,7 @@ const ProductCreate = () => {
                                 server={`${process.env.REACT_APP_BACKEND}/files`}
                                 name="file" /* sets the file input name, it's filepond by default */
                                 labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-                                credits={{ label: "", url: "" }}
+                                credits={false}
                             />
                         </div>
 
