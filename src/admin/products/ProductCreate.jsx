@@ -17,22 +17,6 @@ const ProductCreate = () => {
 
     const [files, setFiles] = useState([])
 
-    /*
-        [
-            {
-                serverId: 'https://example.com/some.png'
-            },
-            {
-                serverId: 'https://example.com/some.png'
-            },
-        ]  
-        
-        [
-            'https://example.com/some.png',
-            'https://example.com/some.png',
-        ]
-     */
-
     return (
         <div>
             <h1 className='lock text-gray-700 text-4xl mt-8 mb-8'>Add new product</h1>
@@ -82,7 +66,7 @@ const ProductCreate = () => {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
                                 Description
                             </label>
-                            <Field as="textareag" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="description" />
+                            <Field as="textarea" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="description" />
                             <ErrorMessage name="description" component="div" />
                         </div>
 
