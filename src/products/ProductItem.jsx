@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { truncate } from "../utils/string";
+import { toPrice } from '../utils/number';
+import { Star } from 'react-feather';
 
 function ProductItem({ product }) {
 
@@ -13,12 +15,21 @@ function ProductItem({ product }) {
     }
 
     return (
-        <div className="rounded bg-violet-300 p-8">
+        <div className="bg-white p-8 shadow-sm transition-shadow duration-500 hover:shadow-lg">
             <Link to={`/products/${product.id}`}>
-                <img className="max-h-36" src={thumbnail()} />
-                <h2 className="text-2xl font-bold mt-4">{product.title}</h2>
-                <p className="font-bold">${product.price}</p>
-                <p className="">{truncate(product.description)}</p>
+                <div className="h-40 mb-4">
+                    <img className='h-full mx-auto' src={thumbnail()} />
+                </div>
+                <div className="flex justify-between">
+                    <div className="text-blue-600">Smartphone</div>
+                    <div className="text-blue-600 flex items-center mb-1.5">
+                        <Star size={20} color="gold" className="mr-1" />
+                        <span>4.4</span>
+                    </div>
+                </div>
+                <h2 className="text-md font-bold mb-1">{product.title}</h2>
+                <p className=" text-green-700 font-semibold mb-1">{toPrice(product.price)}</p>
+                <p>{truncate(product.description, 80)}</p>
             </Link>
         </div>
     )
