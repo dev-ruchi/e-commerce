@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    body {
+      @apply bg-slate-50;
+    }
+  }
+  
+
 .line {
     height: 3px;
     background: #000;
