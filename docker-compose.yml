@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  # Define the service for your React application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"  # Map host port 3005 to container port 3005
+    environment:
+      - REACT_APP_BACKEND=${REACT_APP_BACKEND}
+    volumes:
+      - .:/app       # Mount the current directory to the /app directory in the container
+    command: npm start
+
+  # Add an additional service for running npm commands
+  npm:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    entrypoint: [ 'npm' ]
+
+# Add any other services or configurations you need here
