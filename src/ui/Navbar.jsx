@@ -19,7 +19,7 @@ const Navbar = () => {
     },
   ])
 
-  const [opened, setOpened] = useState(true)
+  const [opened, setOpened] = useState(false)
 
   return (
     <>
