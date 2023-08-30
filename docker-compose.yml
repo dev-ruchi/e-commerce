@@ -9,6 +9,8 @@ services:
       - "3005:3005"  # Map host port 3005 to container port 3005
     environment:
       - REACT_APP_BACKEND=${REACT_APP_BACKEND}
+      - REACT_APP_LOCALE=${REACT_APP_LOCALE}
+      - REACT_APP_CURRENCY=${REACT_APP_CURRENCY}
     volumes:
       - .:/app       # Mount the current directory to the /app directory in the container
     command: npm start
