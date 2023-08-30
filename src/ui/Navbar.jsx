@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Home, LogOut, Menu, User, X } from "react-feather";
+import { Menu, X } from "react-feather";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -44,7 +44,7 @@ const Navbar = () => {
 
         <ul>
           {menuItems.map(item => (
-            <li className="mb-3">
+            <li className="mb-3" key={`nav-${item.link}`}>
               <Link to={item.link}>
                 {item.label}
               </Link>
