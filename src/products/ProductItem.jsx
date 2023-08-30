@@ -18,7 +18,7 @@ function ProductItem({ product }) {
         <div className="bg-white p-8 shadow-sm transition-shadow duration-500 hover:shadow-lg">
             <Link to={`/products/${product.id}`}>
                 <div className="h-40 mb-4">
-                    <img className='h-full mx-auto' src={thumbnail()} />
+                    <img className='h-full mx-auto' src={thumbnail()} alt={product.title} />
                 </div>
                 <div className="flex justify-between">
                     <div className="text-blue-600">Smartphone</div>
