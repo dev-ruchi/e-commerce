@@ -25,10 +25,7 @@ function Form({ title, fields, btnLabel, onSubmit, validate }) {
                             field => (
                                 <FormField
                                     key={field.name}
-                                    label={field.label}
-                                    id={field.id || field.name}
-                                    name={field.name}
-                                    type={field.type || "text"}
+                                    attrs={field}
                                 />
                             )
                         )}

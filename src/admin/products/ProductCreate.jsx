@@ -1,94 +1,47 @@
 import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import backend from "utils/backend";
-
-import { FilePond, registerPlugin } from 'react-filepond'
-
-import 'filepond/dist/filepond.min.css'
-
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
-
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
+import Form from 'ui/Form';
+import FileUpload from 'ui/FileUpload';
 
 
 const ProductCreate = () => {
 
     const [files, setFiles] = useState([])
 
+    const validate = values => {
+        const errors = {};
+        if (!values.title) {
+            errors.title = 'Product title is required';
+        }
+        return errors;
+    }
+
+    const onSubmit = (values, { setSubmitting }) => {
+
+        files.forEach((object) => {
+            values.images.push(object.serverId);
+        })
+
+        backend.post('/products', values)
+            .finally(() => {
+                setSubmitting(false);
+            })
+    }
+
+    const fields = [
+        { name: 'title', label: 'Title' },
+        { name: 'description', label: 'Description', as: 'textarea' },
+        { name: 'price', label: 'Price' },
+        { name: 'images', as: FileUpload, files, setFiles, value: [] },
+    ];
+
     return (
-        <div>
-            <h1 className='lock text-gray-700 text-4xl mt-8 mb-8'>Add new product</h1>
-            <Formik
-                initialValues={{ title: '', description: '', price: '', images: [] }}
-                validate={values => {
-                    const errors = {};
-                    if (!values.title) {
-                        errors.title = 'Product title is required';
-                    }
-                    return errors;
-                }}
-                onSubmit={(values, { setSubmitting }) => {
-
-                    files.forEach((object) => {
-                        values.images.push(object.serverId);
-                    })
-
-                    backend.post('/products', values)
-                        .finally(() => {
-                            setSubmitting(false);
-                        })
-                }}
-            >
-                {({ isSubmitting }) => (
-                    <Form>
-                        <div className='mb-4'>
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                                Title
-                            </label>
-                            <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="title" />
-                            <ErrorMessage name="title" component="div" />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
-                                Price
-                            </label>
-                            <Field className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="price" />
-                            <ErrorMessage name="price" component="div" />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
-                                Description
-                            </label>
-                            <Field as="textarea" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="description" />
-                            <ErrorMessage name="description" component="div" />
-                        </div>
-
-                        <div className="App">
-                            <FilePond
-                                files={files}
-                                onupdatefiles={setFiles}
-                                allowMultiple={true}
-                                maxFiles={5}
-                                server={`${process.env.REACT_APP_BACKEND}/files`}
-                                name="file" /* sets the file input name, it's filepond by default */
-                                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-                                credits={false}
-                            />
-                        </div>
-
-                        <div className="flex justify-center">
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" type="submit" disabled={isSubmitting}>
-                                Add
-                            </button>
-                        </div>
-                    </Form>
-                )}
-            </Formik>
-        </div>
+        <Form title="Create Product"
+            btnLabel="Create"
+            onSubmit={onSubmit}
+            fields={fields}
+            validate={validate}
+        />
     )
 }
 
