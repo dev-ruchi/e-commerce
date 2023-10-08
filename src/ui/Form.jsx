@@ -7,7 +7,7 @@ function Form({ title, fields, btnLabel, onSubmit, validate }) {
     const getInitialValues = () => {
         let values = {}
         fields.forEach((field) => {
-            values[field.name] = field.value;
+            values[field.name] = field.value || "";
         })
         return values;
     }
@@ -24,11 +24,11 @@ function Form({ title, fields, btnLabel, onSubmit, validate }) {
                         {fields.map(
                             field => (
                                 <FormField
-                                    key={field.id}
+                                    key={field.name}
                                     label={field.label}
-                                    id={field.id}
+                                    id={field.id || field.name}
                                     name={field.name}
-                                    type={field.type}
+                                    type={field.type || "text"}
                                 />
                             )
                         )}

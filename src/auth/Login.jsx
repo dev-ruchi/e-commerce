@@ -7,16 +7,11 @@ const Login = () => {
     const fields = [
         {
             label: "Email or password",
-            id: "username",
             name: "username",
-            value: "",
-            type: "text"
         },
         {
             label: "Passowrd",
-            id: "password",
             name: "password",
-            value: "",
             type: "password"
         },
     ];
