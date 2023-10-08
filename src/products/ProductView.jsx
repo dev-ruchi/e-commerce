@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
-import axios from "axios";
+import backend from "utils/backend";
 import ReviewList from "./ReviewList";
-import { toPrice } from '../utils/number';
+import { toPrice } from 'utils/number';
 
 const ProductView = () => {
     let { slug } = useParams();
@@ -10,7 +10,7 @@ const ProductView = () => {
     const [activeImage, setActiveImage] = useState(null)
 
     useEffect(function () {
-        axios.get(`${process.env.REACT_APP_BACKEND}/products/${slug}`)
+        backend.get(`/products/${slug}`)
             .then(res => setProduct(res.data))
     }, [])
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { truncate } from "../utils/string";
-import { toPrice } from '../utils/number';
+import { truncate } from "utils/string";
+import { toPrice } from 'utils/number';
 import { Star } from 'react-feather';
 
 function ProductItem({ product }) {

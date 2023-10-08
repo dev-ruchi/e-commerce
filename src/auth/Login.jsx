@@ -1,7 +1,7 @@
 // Render Prop
 import React from 'react';
-import Form from '../ui/Form';
-import axios from 'axios';
+import Form from 'ui/Form';
+import backend from "utils/backend";
 
 const Login = () => {
     const fields = [
@@ -29,15 +29,10 @@ const Login = () => {
     }
 
     const onSubmit = (values, { setSubmitting }) => {
-        axios({
-            method: "post",
-            url: `${process.env.REACT_APP_BACKEND}/auth/login`,
-            data: values,
-        })
+        backend.post("/auth/login", values)
             .then(response => {
                 localStorage.setItem("access_token", response.data.access_token)
             })
-            .catch(e => console.log(e))
             .finally(() => {
                 setSubmitting(false);
             })

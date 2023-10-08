@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import backend from "utils/backend";
 import ProductItem from "./ProductItem";
 
 
@@ -7,7 +7,7 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND}/products`)
+        backend.get(`/products`)
             .then(res => setProducts(res.data))
     }, []);
 

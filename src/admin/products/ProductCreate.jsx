@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import axios from 'axios';
+import backend from "utils/backend";
 
 import { FilePond, registerPlugin } from 'react-filepond'
 
@@ -30,18 +30,15 @@ const ProductCreate = () => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                 
+
                     files.forEach((object) => {
                         values.images.push(object.serverId);
                     })
-                 
-                    axios({
-                        method: "post",
-                        url: `${process.env.REACT_APP_BACKEND}/products`,
-                        data: values,
-                    }).finally(() => {
-                        setSubmitting(false);
-                    })
+
+                    backend.post('/products', values)
+                        .finally(() => {
+                            setSubmitting(false);
+                        })
                 }}
             >
                 {({ isSubmitting }) => (
