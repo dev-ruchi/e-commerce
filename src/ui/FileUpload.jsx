@@ -26,7 +26,7 @@ function FileUpload({
             allowMultiple={allowMultiple}
             maxFiles={maxFiles}
             server={server}
-            name="file"
+            name={name}
             labelIdle={label}
             credits={false}
         />

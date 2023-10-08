@@ -6,9 +6,10 @@ import Button from './Button';
 function Form({ title, fields, btnLabel, onSubmit, validate }) {
     const getInitialValues = () => {
         let values = {}
-        fields.forEach((field) => {
-            values[field.name] = field.value || "";
-        })
+        fields.filter(field => !field.skipFromPayload)
+            .forEach((field) => {
+                values[field.name] = field.value || "";
+            })
         return values;
     }
     return (
@@ -21,14 +22,13 @@ function Form({ title, fields, btnLabel, onSubmit, validate }) {
             >
                 {({ isSubmitting }) => (
                     <FormikForm>
-                        {fields.map(
-                            field => (
+                        {fields.filter(field => !field.skipRender)
+                            .map(field => (
                                 <FormField
                                     key={field.name}
                                     attrs={field}
-                                />
-                            )
-                        )}
+                                />)
+                            )}
 
                         <div className="flex justify-center">
                             <Button label={btnLabel}

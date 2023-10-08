@@ -32,7 +32,8 @@ const ProductCreate = () => {
         { name: 'title', label: 'Title' },
         { name: 'description', label: 'Description', as: 'textarea' },
         { name: 'price', label: 'Price' },
-        { name: 'images', as: FileUpload, files, setFiles, value: [] },
+        { name: 'file', as: FileUpload, files, setFiles, skipFromPayload: true },
+        { name: 'images', value: [], skipRender: true },
     ];
 
     return (
