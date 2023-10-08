@@ -26,20 +26,29 @@ const Navbar = () => {
       <header className="flex justify-between py-4">
         <div>
           <div className="flex items-center gap-2">
-            <Menu className="cursor-pointer" onClick={() => setOpened(true)} />
-            <div className="font-bold text-lg">
+            <Menu className="cursor-pointer md:hidden" onClick={() => setOpened(true)} />
+            <Link to="/" className="font-bold text-lg">
               E-commerce
-            </div>
+            </Link>
           </div>
         </div>
+        <ul className="hidden md:flex gap-4">
+          {menuItems.map(item => (
+            <li key={`nav-${item.link}`}>
+              <Link to={item.link}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </header>
 
       <aside className={`p-4 transition-all ease-in-out duration-500 bg-white fixed top-0 h-screen w-screen ${opened ? 'left-0' : 'left-[-100%]'}`}>
         <div className="flex items-center gap-2 mb-3">
           <X className="cursor-pointer" onClick={() => setOpened(false)} />
-          <div className="font-bold text-lg">
+          <Link to="/" className="font-bold text-lg">
             E-commerce
-          </div>
+          </Link>
         </div>
 
         <ul>
