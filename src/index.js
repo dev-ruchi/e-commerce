@@ -13,6 +13,7 @@ import Signup from "./auth/Signup";
 import ProductView from "./products/ProductView";
 import ProductList from "./products/ProductList";
 import ProductCreate from "./admin/products/ProductCreate";
+import Cart from "./products/Cart";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/products/create",
         element: <ProductCreate />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
     ]
   },
