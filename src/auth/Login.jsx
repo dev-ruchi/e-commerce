@@ -10,7 +10,7 @@ const Login = () => {
             name: "username",
         },
         {
-            label: "Passowrd",
+            label: "Password",
             name: "password",
             type: "password"
         },
