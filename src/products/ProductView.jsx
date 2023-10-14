@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import backend from "utils/backend";
 import ReviewList from "./ReviewList";
 import { toPrice } from 'utils/number';
+import ReviewForm from "./ReviewForm";
 
 const ProductView = () => {
     let { slug } = useParams();
@@ -31,6 +32,9 @@ const ProductView = () => {
                     <p className="text-green-600 font-bold mb-3">{toPrice(product.price)}</p>
                     <p>{product.description}</p>
                 </div>
+            </div>
+            <div>
+                <ReviewForm />
             </div>
             <div>
                 <ReviewList />
