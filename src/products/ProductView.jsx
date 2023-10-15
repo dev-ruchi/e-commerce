@@ -7,7 +7,7 @@ import ReviewForm from "./ReviewForm";
 
 const ProductView = () => {
   let { slug } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState(null);
 
   useEffect(
@@ -19,14 +19,18 @@ const ProductView = () => {
 
   useEffect(
     function () {
-      if (Array.isArray(product.images) && product.images.length > 0) {
+      if (
+        product &&
+        Array.isArray(product.images) &&
+        product.images.length > 0
+      ) {
         setActiveImage(product.images[0]);
       }
     },
     [product],
   );
 
-  return (
+  return product ? (
     <div>
       <div className="mt-8 md:mt-20 md:grid md:grid-cols-10 md:gap-8">
         <div className="col-span-4 mb-8 md:mb-0">
@@ -41,12 +45,14 @@ const ProductView = () => {
         </div>
       </div>
       <div>
-        <ReviewForm />
+        <ReviewForm productId={product.id} />
       </div>
       <div>
         <ReviewList />
       </div>
     </div>
+  ) : (
+    <p>Loading</p>
   );
 };
 

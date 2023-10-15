@@ -26,7 +26,14 @@ backend.interceptors.response.use(
     return response;
   },
   (error) => {
-    return Promise.reject(error);
+    switch (error.response.status) {
+      case 401:
+        window.location.href = "/login";
+        break;
+      default:
+        Promise.reject(error);
+        break;
+    }
   },
 );
 
