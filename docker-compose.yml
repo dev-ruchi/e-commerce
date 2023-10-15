@@ -15,12 +15,18 @@ services:
       - .:/app       # Mount the current directory to the /app directory in the container
     command: npm start
 
-  # Add an additional service for running npm commands
   npm:
     image: node:18-alpine
     working_dir: /app
     volumes:
       - .:/app
     entrypoint: [ 'npm' ]
+    user: "${HOST_UID}:${HOST_GID}"
 
-# Add any other services or configurations you need here
+  npx:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    entrypoint: [ 'npx' ]
+    user: "${HOST_UID}:${HOST_GID}"

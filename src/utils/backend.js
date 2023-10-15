@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const backend = axios.create({
   baseURL: process.env.REACT_APP_BACKEND,
@@ -17,7 +17,7 @@ backend.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Response Interceptor
@@ -27,7 +27,7 @@ backend.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 export default backend;
