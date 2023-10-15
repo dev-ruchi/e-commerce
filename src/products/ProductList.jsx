@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import backend from "utils/backend";
 import ProductItem from "./ProductItem";
 

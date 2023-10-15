@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function Button({ type, disabled, label }) {
   return (
@@ -11,5 +12,11 @@ function Button({ type, disabled, label }) {
     </button>
   );
 }
+
+Button.propTypes = {
+  type: PropTypes.string,
+  disabled: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+};
 
 export default Button;

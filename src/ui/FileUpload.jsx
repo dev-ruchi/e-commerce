@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { FilePond, registerPlugin } from "react-filepond";
 
@@ -32,5 +33,15 @@ function FileUpload({
     />
   );
 }
+
+FileUpload.propTypes = {
+  files: PropTypes.array.isRequired, // An array of files is required
+  setFiles: PropTypes.func.isRequired, // A function to update files is required
+  maxFiles: PropTypes.number, // The maximum number of files is optional and should be a number
+  server: PropTypes.string, // The server URL is optional and should be a string
+  allowMultiple: PropTypes.bool, // Whether to allow multiple files is optional and should be a boolean
+  name: PropTypes.string, // The name attribute is optional and should be a string
+  label: PropTypes.string, // The label text is optional and should be a string
+};
 
 export default FileUpload;

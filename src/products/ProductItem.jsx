@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { truncate } from "utils/string";
 import { toPrice } from "utils/number";
 import { Star } from "react-feather";
+import PropTypes from "prop-types";
 
 function ProductItem({ product }) {
   function thumbnail() {
@@ -39,5 +40,15 @@ function ProductItem({ product }) {
     </div>
   );
 }
+
+ProductItem.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
 
 export default ProductItem;

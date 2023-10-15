@@ -10,9 +10,12 @@ const ProductView = () => {
   const [product, setProduct] = useState([]);
   const [activeImage, setActiveImage] = useState(null);
 
-  useEffect(function () {
-    backend.get(`/products/${slug}`).then((res) => setProduct(res.data));
-  }, []);
+  useEffect(
+    function () {
+      backend.get(`/products/${slug}`).then((res) => setProduct(res.data));
+    },
+    [slug],
+  );
 
   useEffect(
     function () {
