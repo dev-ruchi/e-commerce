@@ -5,12 +5,23 @@ import backend from "utils/backend";
 import Select from "ui/Select";
 
 function ReviewForm({ productId }) {
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = (values, { setSubmitting, resetForm }) => {
     values.product_id = productId;
     values.rating = Number(values.rating);
-    backend.post("/reviews", values).finally(() => {
-      setSubmitting(false);
-    });
+    backend
+      .post("/reviews", values)
+      .then(() => {
+        resetForm({
+          values: {
+            title: "",
+            body: "",
+            rating: "",
+          },
+        });
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   const ratings = [
