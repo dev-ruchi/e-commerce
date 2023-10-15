@@ -19,8 +19,7 @@
     "plugins": [
         "react",
         "prettier",
-        "react-hooks",
-        "eslint:recommended"
+        "react-hooks"
     ],
     "settings": {
         "react": {
@@ -28,6 +27,7 @@
         }
     },
     "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "no-unused-vars": "error"
     }
 }

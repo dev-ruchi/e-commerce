@@ -1,7 +1,8 @@
-import React from 'react'
-import { Formik, Form as FormikForm } from 'formik';
-import FormField from './FormField';
-import Button from './Button';
+import React from "react";
+import PropTypes from "prop-types";
+import { Formik, Form as FormikForm } from "formik";
+import FormField from "./FormField";
+import Button from "./Button";
 
 function Form({
     title,
@@ -38,17 +39,29 @@ function Form({
                                 />)
                             )}
 
-                        <div className="flex justify-center">
-                            <Button label={btnLabel}
-                                type="submit"
-                                disabled={isSubmitting}
-                            />
-                        </div>
-                    </FormikForm>
-                )}
-            </Formik>
-        </div>
-    )
+            <div className="flex justify-center">
+              <Button label={btnLabel} type="submit" disabled={isSubmitting} />
+            </div>
+          </FormikForm>
+        )}
+      </Formik>
+    </div>
+  );
 }
 
-export default Form
+Form.propTypes = {
+  title: PropTypes.string.isRequired,
+  fields: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.any,
+      skipFromPayload: PropTypes.bool,
+      skipRender: PropTypes.bool,
+    }),
+  ).isRequired,
+  btnLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  validate: PropTypes.func,
+};
+
+export default Form;

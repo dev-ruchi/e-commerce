@@ -22,3 +22,11 @@ services:
       - .:/app
     entrypoint: [ 'npm' ]
     user: "${HOST_UID}:${HOST_GID}"
+
+  npx:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    entrypoint: [ 'npx' ]
+    user: "${HOST_UID}:${HOST_GID}"
