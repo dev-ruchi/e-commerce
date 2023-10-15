@@ -3,7 +3,15 @@ import { Formik, Form as FormikForm } from 'formik';
 import FormField from './FormField';
 import Button from './Button';
 
-function Form({ title, fields, btnLabel, onSubmit, validate }) {
+function Form({
+    title,
+    fields,
+    btnLabel,
+    onSubmit,
+    validate,
+    formClassList = 'max-w-lg mx-auto',
+    titleClassList = 'lock text-gray-700 text-4xl mt-8 mb-8'
+}) {
     const getInitialValues = () => {
         let values = {}
         fields.filter(field => !field.skipFromPayload)
@@ -13,8 +21,8 @@ function Form({ title, fields, btnLabel, onSubmit, validate }) {
         return values;
     }
     return (
-        <div className="max-w-lg mx-auto">
-            <h1 className='lock text-gray-700 text-4xl mt-8 mb-8'>{title}</h1>
+        <div className={formClassList}>
+            <h1 className={titleClassList}>{title}</h1>
             <Formik
                 initialValues={getInitialValues()}
                 validate={validate}
