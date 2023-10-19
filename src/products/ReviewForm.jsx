@@ -39,8 +39,11 @@ function ReviewForm({ productId }) {
   ];
   return (
     <Form
-      title="Review Product"
+      formClassList="md:w-3/4"
+      title="Add review"
+      titleClassList="text-xl font-bold mb-3"
       btnLabel="Review"
+      btnContainerClassList=""
       fields={fields}
       onSubmit={onSubmit}
     />

@@ -12,6 +12,7 @@ function Form({
   validate,
   formClassList = "max-w-lg mx-auto",
   titleClassList = "lock text-gray-700 text-4xl mt-8 mb-8",
+  btnContainerClassList = "flex justify-center",
 }) {
   const getInitialValues = () => {
     let values = {};
@@ -39,7 +40,7 @@ function Form({
                 <FormField key={field.name} attrs={field} />
               ))}
 
-            <div className="flex justify-center">
+            <div className={btnContainerClassList}>
               <Button label={btnLabel} type="submit" disabled={isSubmitting} />
             </div>
           </FormikForm>
@@ -64,6 +65,7 @@ Form.propTypes = {
   validate: PropTypes.func,
   formClassList: PropTypes.string,
   titleClassList: PropTypes.string,
+  btnContainerClassList: PropTypes.string,
 };
 
 export default Form;
