@@ -33,13 +33,19 @@ function Profile() {
     });
   }, []);
 
+  function onSubmit(values, { setSubmitting }) {
+    backend.put("/profile", values).finally(() => {
+      setSubmitting(false);
+    });
+  }
+
   return (
     <div>
       <Form
         title="My Profile"
         fields={fields}
         btnLabel="Update"
-        onSubmit={() => {}}
+        onSubmit={onSubmit}
       />
     </div>
   );
