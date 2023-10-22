@@ -20,3 +20,8 @@
     transition: all .5s ease-in-out;
     width: 32px;
 }
+
+.single-file-upload .filepond--root {
+	width:170px;
+	margin: 0 auto;
+}

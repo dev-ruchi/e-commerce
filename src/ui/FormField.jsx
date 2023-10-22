@@ -5,12 +5,14 @@ import { Field, ErrorMessage } from "formik";
 function FormField({ attrs }) {
   return (
     <div className="mb-4">
-      <label
-        htmlFor={attrs.id}
-        className="block text-gray-700 text-sm font-bold mb-2"
-      >
-        {attrs.label}
-      </label>
+      {attrs.label && (
+        <label
+          htmlFor={attrs.id}
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          {attrs.label}
+        </label>
+      )}
       <Field
         id={attrs.id || attrs.name}
         {...attrs}
@@ -25,7 +27,7 @@ FormField.propTypes = {
   attrs: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
   }).isRequired,
 };
 

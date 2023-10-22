@@ -11,6 +11,22 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
+function additionalAttrs(allowMultiple) {
+  if (!allowMultiple) {
+    return {
+      imagePreviewHeight: 170,
+      imageCropAspectRatio: "1:1",
+      imageResizeTargetWidth: 200,
+      imageResizeTargetHeight: 200,
+      stylePanelLayout: "compact circle",
+      styleLoadIndicatorPosition: "center bottom",
+      styleButtonRemoveItemPosition: "center bottom",
+    };
+  }
+
+  return {};
+}
+
 function FileUpload({
   files,
   setFiles,
@@ -18,19 +34,22 @@ function FileUpload({
   server = `${process.env.REACT_APP_BACKEND}/files`,
   allowMultiple = true,
   name,
-  label = 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
+  labelIdle = 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
 }) {
   return (
-    <FilePond
-      files={files}
-      onupdatefiles={setFiles}
-      allowMultiple={allowMultiple}
-      maxFiles={maxFiles}
-      server={server}
-      name={name}
-      labelIdle={label}
-      credits={false}
-    />
+    <div className={!allowMultiple && "single-file-upload"}>
+      <FilePond
+        files={files}
+        onupdatefiles={setFiles}
+        allowMultiple={allowMultiple}
+        maxFiles={maxFiles}
+        server={server}
+        name={name}
+        labelIdle={labelIdle}
+        credits={false}
+        {...additionalAttrs(allowMultiple)}
+      />
+    </div>
   );
 }
 
@@ -41,7 +60,7 @@ FileUpload.propTypes = {
   server: PropTypes.string, // The server URL is optional and should be a string
   allowMultiple: PropTypes.bool, // Whether to allow multiple files is optional and should be a boolean
   name: PropTypes.string, // The name attribute is optional and should be a string
-  label: PropTypes.string, // The label text is optional and should be a string
+  labelIdle: PropTypes.string, // The label text is optional and should be a string
 };
 
 export default FileUpload;

@@ -11,7 +11,7 @@ import ProductView from "./products/ProductView";
 import ProductList from "./products/ProductList";
 import ProductCreate from "./admin/products/ProductCreate";
 import Cart from "./products/Cart";
-import Profile from "admin/users/Profile";
+import Profile from "users/Profile";
 
 const router = createBrowserRouter([
   {
