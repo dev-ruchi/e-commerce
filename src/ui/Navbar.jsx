@@ -21,8 +21,8 @@ const Navbar = () => {
   const [opened, setOpened] = useState(false);
 
   return (
-    <>
-      <header className="flex justify-between py-4">
+    <div className="border-b-4 border-gray-500 mb-8">
+      <header className="container mx-auto flex justify-between py-4">
         <div>
           <div className="flex items-center gap-2">
             <Menu
@@ -63,7 +63,7 @@ const Navbar = () => {
           ))}
         </ul>
       </aside>
-    </>
+    </div>
   );
 };
 

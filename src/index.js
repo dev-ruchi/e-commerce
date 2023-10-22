@@ -11,6 +11,7 @@ import ProductView from "./products/ProductView";
 import ProductList from "./products/ProductList";
 import ProductCreate from "./admin/products/ProductCreate";
 import Cart from "./products/Cart";
+import Profile from "admin/users/Profile";
 
 const router = createBrowserRouter([
   {
@@ -41,14 +42,16 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <div className="container px-4 mx-auto">
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  </div>,
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>,
 );
