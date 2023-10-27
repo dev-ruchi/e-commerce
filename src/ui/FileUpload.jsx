@@ -37,7 +37,7 @@ function FileUpload({
   labelIdle = 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
 }) {
   return (
-    <div className={!allowMultiple && "single-file-upload"}>
+    <div className={allowMultiple ? "multiple" : "single"}>
       <FilePond
         files={files}
         onupdatefiles={setFiles}
