@@ -45,7 +45,7 @@ const Navbar = () => {
 
       <aside
         className={`p-4 transition-all ease-in-out duration-500 bg-white fixed top-0 h-screen w-screen ${
-          opened ? "left-0" : "left-[-100%]"
+          opened ? "left-0" : "left-[-100vw]"
         }`}
       >
         <div className="flex items-center gap-2 mb-3">
