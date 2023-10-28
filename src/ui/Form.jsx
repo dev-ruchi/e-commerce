@@ -7,6 +7,7 @@ import Button from "./Button";
 function Form({
   title,
   fields,
+  initialValues,
   btnLabel,
   onSubmit,
   validate,
@@ -28,9 +29,10 @@ function Form({
     <div className={formClassList}>
       <h1 className={titleClassList}>{title}</h1>
       <Formik
-        initialValues={getInitialValues()}
+        initialValues={initialValues || getInitialValues()}
         validate={validate}
         onSubmit={onSubmit}
+        enableReinitialize={true}
       >
         {({ isSubmitting }) => (
           <FormikForm>
@@ -60,6 +62,7 @@ Form.propTypes = {
       skipRender: PropTypes.bool,
     }),
   ).isRequired,
+  initialValues: PropTypes.object,
   btnLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   validate: PropTypes.func,

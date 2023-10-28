@@ -4,7 +4,7 @@ import Form from "ui/Form";
 import backend from "utils/backend";
 
 function Profile() {
-  const [fields, setFields] = useState([
+  const fields = [
     {
       name: "file",
       as: FileUpload,
@@ -16,20 +16,27 @@ function Profile() {
     { name: "avatar", skipRender: true },
     { name: "name", label: "Name" },
     { name: "email", label: "Email" },
-    { name: "password", label: "Password" },
-  ]);
+    { name: "phone", label: "Phone" },
+    { name: "password", label: "Password", type: "password" },
+  ];
+
+  const [data, setData] = useState({
+    avatar: "",
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
 
   useEffect(() => {
     backend.get("/profile").then(({ data }) => {
-      setFields(
-        fields.map((field) => {
-          if (data[field.name]) {
-            return { ...field, value: data[field.name] };
-          } else {
-            return field;
-          }
-        }),
-      );
+      setData({
+        avatar: data.avatar,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        password: "",
+      });
     });
   }, []);
 
@@ -44,6 +51,7 @@ function Profile() {
       <Form
         title="My Profile"
         fields={fields}
+        initialValues={data}
         btnLabel="Update"
         onSubmit={onSubmit}
       />

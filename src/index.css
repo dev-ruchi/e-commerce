@@ -3,25 +3,24 @@
 @tailwind utilities;
 
 @layer base {
-    html {
-      font-family: 'Nunito', sans-serif;
-    }
-    body {
-      @apply bg-gray-50;
-    }
+  html {
+    font-family: "Nunito", sans-serif;
   }
-  
-
-.line {
-    height: 3px;
-    background: #000;
-    margin-bottom: 6px;
-    border-radius: 3px;
-    transition: all .5s ease-in-out;
-    width: 32px;
+  body {
+    @apply bg-gray-50;
+  }
 }
 
-.single-file-upload .filepond--root {
-	width:170px;
-	margin: 0 auto;
+.line {
+  height: 3px;
+  background: #000;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  transition: all 0.5s ease-in-out;
+  width: 32px;
+}
+
+.single .filepond--root {
+  width: 170px;
+  margin: 0 auto;
 }
