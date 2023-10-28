@@ -20,7 +20,18 @@
   width: 32px;
 }
 
-.single .filepond--root {
+.single-file .filepond--root {
   width: 170px;
   margin: 0 auto;
+}
+.single-file .filepond--file-action-button {
+  display: none;
+}
+
+.single-file .filepond--root:hover .filepond--file-action-button {
+  display: block;
+}
+
+.single-file .filepond--image-preview-overlay {
+  display: none;
 }

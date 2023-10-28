@@ -4,14 +4,17 @@ import Form from "ui/Form";
 import backend from "utils/backend";
 
 function Profile() {
+  const [files, setFiles] = useState([]);
+
   const fields = [
     {
       name: "file",
       as: FileUpload,
-      files: [],
-      setFiles: () => {},
+      files,
+      setFiles,
       allowMultiple: false,
       skipFromPayload: true,
+      allowRevert: false,
     },
     { name: "avatar", skipRender: true },
     { name: "name", label: "Name" },
@@ -30,6 +33,13 @@ function Profile() {
 
   useEffect(() => {
     backend.get("/profile").then(({ data }) => {
+      if (data.avatar) {
+        const source = data.avatar.replace(
+          `${process.env.REACT_APP_BACKEND}/files/`,
+          "",
+        );
+        setFiles([{ source, options: { type: "local" } }]);
+      }
       setData({
         avatar: data.avatar,
         name: data.name,
@@ -41,6 +51,9 @@ function Profile() {
   }, []);
 
   function onSubmit(values, { setSubmitting }) {
+    if (Array.isArray(files) && files.length > 0) {
+      values.avatar = files[0].serverId;
+    }
     backend.put("/profile", values).finally(() => {
       setSubmitting(false);
     });

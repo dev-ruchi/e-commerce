@@ -31,19 +31,22 @@ function FileUpload({
   files,
   setFiles,
   maxFiles = 5,
-  server = `${process.env.REACT_APP_BACKEND}/files`,
+  endPoint = `${process.env.REACT_APP_BACKEND}/files/`,
   allowMultiple = true,
   name,
   labelIdle = 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
 }) {
   return (
-    <div className={allowMultiple ? "multiple" : "single"}>
+    <div className={allowMultiple ? "multiple-file" : "single-file"}>
       <FilePond
         files={files}
         onupdatefiles={setFiles}
         allowMultiple={allowMultiple}
         maxFiles={maxFiles}
-        server={server}
+        server={{
+          process: endPoint,
+          load: endPoint,
+        }}
         name={name}
         labelIdle={labelIdle}
         credits={false}
@@ -57,7 +60,7 @@ FileUpload.propTypes = {
   files: PropTypes.array.isRequired, // An array of files is required
   setFiles: PropTypes.func.isRequired, // A function to update files is required
   maxFiles: PropTypes.number, // The maximum number of files is optional and should be a number
-  server: PropTypes.string, // The server URL is optional and should be a string
+  endPoint: PropTypes.string, // The server URL is optional and should be a string
   allowMultiple: PropTypes.bool, // Whether to allow multiple files is optional and should be a boolean
   name: PropTypes.string, // The name attribute is optional and should be a string
   labelIdle: PropTypes.string, // The label text is optional and should be a string
