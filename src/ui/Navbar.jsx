@@ -9,7 +9,7 @@ const Navbar = () => {
       label: "Home",
     },
     {
-      link: "/account",
+      link: "/profile",
       label: "My Account",
     },
     {
