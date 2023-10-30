@@ -43,7 +43,7 @@ function Form({
               ))}
 
             <div className={btnContainerClassList}>
-              <Button label={btnLabel} type="submit" disabled={isSubmitting} />
+              <Button label={btnLabel} btnType="submit" disabled={isSubmitting} />
             </div>
           </FormikForm>
         )}
