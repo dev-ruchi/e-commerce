@@ -6,6 +6,7 @@ function Button({
   disabled = false,
   label,
   btnType = "button",
+  onClick,
 }) {
   const uiClassMap = {
     primary: "bg-blue-500 hover:bg-blue-700 text-white",
@@ -18,6 +19,7 @@ function Button({
       type={btnType}
       disabled={disabled}
       className={`${uiClassMap[uiType]} text-base font-normal py-2 px-4 rounded`}
+      onClick={onClick}
     >
       {label}
     </button>
@@ -30,6 +32,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
   typeSubmit: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default Button;
