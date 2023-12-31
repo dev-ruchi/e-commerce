@@ -9,6 +9,10 @@ const Navbar = () => {
       label: "Home",
     },
     {
+      link: "/cart",
+      label: "Cart",
+    },
+    {
       link: "/profile",
       label: "My Account",
     },
